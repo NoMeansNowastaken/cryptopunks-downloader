@@ -2,6 +2,7 @@ import requests
 import os
 
 
+# If this didn't exist ~2000 wouldn't download
 def number(u):
     if u < 10:
         return '000' + f'{u}'
@@ -13,6 +14,13 @@ def number(u):
         return u
 
 
+# get os for clear function
+if os.name == 'nt':
+    clear = 'cls'
+else:
+    clear = 'clear'
+
+
 def main():
     i = 0
     for x in range(10000):
@@ -22,13 +30,13 @@ def main():
         if r.status_code == 200:
             with open(f'punks/punk{a}.png', 'wb') as f:
                 f.write(r.content)
-            os.system('clear')
+            os.system(clear)
             print(f'Saved punk {i}')
         else:
             print(r.status_code)
         i += 1
-    
- 
+
+
 if __name__ == '__main__':
     main()
 else:
